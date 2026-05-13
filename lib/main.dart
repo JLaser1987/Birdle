@@ -53,7 +53,7 @@ class Tile extends StatelessWidget {
 }
 
 class GamePage extends StatefulWidget {
-  const GamePage({super.key});
+  GamePage({super.key});
 
   @override
   State<GamePage> createState() => _GamePageState();
@@ -67,6 +67,7 @@ class _GamePageState extends State<GamePage> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
+        spacing: 5.0,
         children: [
           for (var guess in _game.guesses)
             Row(
@@ -83,7 +84,7 @@ class _GamePageState extends State<GamePage> {
               ],
             ),
           GuessInput(
-            onSubmitGuess: (String guess) {
+            onSubmitGuess: (guess) {
               setState(() {
                 _game.guess(guess);
               });
@@ -105,7 +106,7 @@ class GuessInput extends StatelessWidget {
   final FocusNode _focusNode = FocusNode();
 
   void _onSubmit() {
-    // onSubmitGuess(_textEditingController.text.trim());
+    onSubmitGuess(_textEditingController.text);
     _textEditingController.clear();
     _focusNode.requestFocus();
   }
